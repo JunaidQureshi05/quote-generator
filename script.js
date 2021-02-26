@@ -6,15 +6,12 @@ const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-// Show loading
-
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-// Hide loading
-function complete() {
+function removeLoadingSpinner() {
   if (!loader.hidden) {
     quoteContainer.hidden = false;
     loader.hidden = true;
@@ -23,7 +20,7 @@ function complete() {
 
 //GET Quote
 async function getQuote() {
-  loading();
+  showLoadingSpinner();
   const apiUrl = 'https://api.quotable.io/random';
   try {
     const response = await fetch(apiUrl);
@@ -42,7 +39,7 @@ async function getQuote() {
     quoteText.innerText = data.content;
     // Stop loader , show quote
 
-    complete();
+    removeLoadingSpinner();
   } catch (err) {
     console.log('whoops !!! no quotes');
   }
