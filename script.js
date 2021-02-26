@@ -41,7 +41,7 @@ async function getQuote() {
 
     removeLoadingSpinner();
   } catch (err) {
-    console.log('whoops !!! no quotes');
+    getQuote();
   }
 }
 
